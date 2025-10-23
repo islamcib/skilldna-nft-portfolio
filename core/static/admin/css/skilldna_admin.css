@@ -1,0 +1,174 @@
+/* SkillDNA Admin Custom Styles */
+
+/* Общие стили */
+.admin-interface {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    color: #00ffff !important;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+/* Кнопки */
+.btn-primary {
+    background: linear-gradient(45deg, #00ffff, #0080ff) !important;
+    border: none !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #0080ff, #00ffff) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5) !important;
+}
+
+/* Карточки навыков */
+.skill-card {
+    background: rgba(0, 0, 0, 0.8) !important;
+    border: 1px solid rgba(0, 255, 255, 0.3) !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    margin: 10px 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.skill-card:hover {
+    border-color: #00ffff !important;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Статус NFT */
+.nft-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nft-status.issued {
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+    border: 1px solid #00ff00;
+}
+
+.nft-status.pending {
+    background: rgba(255, 170, 0, 0.2);
+    color: #ffaa00;
+    border: 1px solid #ffaa00;
+}
+
+/* Ссылки на блокчейн */
+.blockchain-link {
+    color: #00ffff !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.blockchain-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Таблицы */
+.table {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(0, 255, 255, 0.2) !important;
+}
+
+.table th {
+    background: rgba(0, 255, 255, 0.1) !important;
+    color: #00ffff !important;
+    border-color: rgba(0, 255, 255, 0.3) !important;
+}
+
+.table td {
+    border-color: rgba(0, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+}
+
+/* Формы */
+.form-control {
+    background: rgba(0, 0, 0, 0.8) !important;
+    border: 1px solid rgba(0, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+}
+
+.form-control:focus {
+    border-color: #00ffff !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
+}
+
+/* Алерты */
+.alert-success {
+    background: rgba(0, 255, 0, 0.1) !important;
+    border: 1px solid #00ff00 !important;
+    color: #00ff00 !important;
+}
+
+.alert-warning {
+    background: rgba(255, 170, 0, 0.1) !important;
+    border: 1px solid #ffaa00 !important;
+    color: #ffaa00 !important;
+}
+
+.alert-danger {
+    background: rgba(255, 0, 0, 0.1) !important;
+    border: 1px solid #ff0000 !important;
+    color: #ff0000 !important;
+}
+
+/* Анимации */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Иконки */
+.fa-certificate {
+    color: #ffaa00 !important;
+    text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+}
+
+.fa-link {
+    color: #00ffff !important;
+}
+
+.fa-clock {
+    color: #ffaa00 !important;
+}
+
+/* Специальные элементы */
+.nft-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+    color: #000;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+.blockchain-info {
+    background: rgba(255, 170, 0, 0.1);
+    border: 1px solid #ffaa00;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.blockchain-info strong {
+    color: #ffaa00;
+}

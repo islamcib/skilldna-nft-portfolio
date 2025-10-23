@@ -1,0 +1,21 @@
+{
+  "name": "skilldna-blockchain",
+  "version": "1.0.0",
+  "description": "SkillDNA Blockchain Integration",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy": "hardhat run deploy.js --network sepolia",
+    "test": "hardhat test"
+  },
+  "keywords": ["ethereum", "solidity", "nft", "skills"],
+  "author": "SkillDNA Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

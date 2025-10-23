@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillDNA - NFT Портфолио Навыков</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .crypto-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #00ffff;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            color: #888;
+            font-weight: 300;
+        }
+        .status {
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00ff00;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .status::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            animation: statusGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes statusGlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .status h2 {
+            color: #00ff00;
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+        
+        .api-section {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .api-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .api-section h2 {
+            color: #00ffff;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .api-endpoint {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .api-endpoint:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .method {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .url {
+            color: #ffaa00;
+            font-size: 1.1rem;
+        }
+        
+        .description {
+            color: #cccccc;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        .demo-button {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .demo-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .demo-button:hover::before {
+            left: 100%;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .feature h3 {
+            color: #00ffff;
+            font-family: 'Orbitron', monospace;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .feature p {
+            color: #cccccc;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .blockchain-info {
+            background: rgba(255, 165, 0, 0.1);
+            border: 2px solid #ffaa00;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blockchain-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 170, 0, 0.2), transparent);
+            animation: blockchainGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes blockchainGlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .blockchain-info h2 {
+            color: #ffaa00;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+        }
+        
+        .blockchain-info p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .blockchain-info strong {
+            color: #ffaa00;
+        }
+    </style>
+</head>
+<body>
+    <div class="crypto-grid"></div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">⚡ SkillDNA</div>
+            <div class="subtitle">NFT Портфолио Навыков</div>
+            <div class="tagline">Ваши навыки в блокчейне Ethereum</div>
+        </div>
+        
+        <div class="status">
+            <h2>✅ СИСТЕМА АКТИВНА</h2>
+            <p><strong>Django сервер:</strong> http://localhost:8000</p>
+            <p><strong>API Endpoint:</strong> http://localhost:8000/api/skills/</p>
+            <p><strong>Статус:</strong> Все системы работают в штатном режиме</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🎯 Django Backend</h3>
+                <p>Полнофункциональный REST API для управления навыками с автоматическим выпуском NFT в блокчейне Ethereum</p>
+            </div>
+            <div class="feature">
+                <h3>⛓️ Blockchain Integration</h3>
+                <p>Каждый навык автоматически выпускается как NFT в сети Ethereum Sepolia с полной прозрачностью</p>
+            </div>
+            <div class="feature">
+                <h3>🔒 Максимальная Безопасность</h3>
+                <p>Приватные ключи защищены, все транзакции подписываются локально, полный контроль над данными</p>
+            </div>
+        </div>
+
+        <div class="api-section">
+            <h2>📡 API ENDPOINTS</h2>
+            
+            <div class="api-endpoint">
+                <span class="method">GET</span> <span class="url">/api/skills/</span>
+                <div class="description">Получить все навыки текущего пользователя</div>
+            </div>
+            
+            <div class="api-endpoint">
+                <span class="method">POST</span> <span class="url">/api/skills/</span>
+                <div class="description">Создать новый навык (автоматически выпускает NFT в блокчейне)</div>
+            </div>
+            
+            <div class="api-endpoint">
+                <span class="method">GET</span> <span class="url">/api/skills/{id}/</span>
+                <div class="description">Получить конкретный навык по ID</div>
+            </div>
+            
+            <div class="api-endpoint">
+                <span class="method">PUT</span> <span class="url">/api/skills/{id}/</span>
+                <div class="description">Обновить навык</div>
+            </div>
+            
+            <div class="api-endpoint">
+                <span class="method">DELETE</span> <span class="url">/api/skills/{id}/</span>
+                <div class="description">Удалить навык</div>
+            </div>
+        </div>
+
+        <div class="blockchain-info">
+            <h2>⛓️ BLOCKCHAIN INFORMATION</h2>
+            <p><strong>Сеть:</strong> Ethereum Sepolia (Testnet)</p>
+            <p><strong>Контракт:</strong> SkillDNA.sol</p>
+            <p><strong>Функции:</strong> Выпуск NFT навыков, отслеживание владельцев, проверка подлинности</p>
+            <p><strong>События:</strong> SkillIssued - уведомления о выпуске навыков</p>
+            <p><strong>Безопасность:</strong> Все транзакции подписываются локально</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <button class="demo-button" onclick="window.open('http://localhost:8000/admin/', '_blank')">
+                🔧 АДМИН ПАНЕЛЬ
+            </button>
+            <button class="demo-button" onclick="window.open('http://localhost:8000/api/skills/', '_blank')">
+                📡 API ENDPOINT
+            </button>
+            <button class="demo-button" onclick="testAPI()">
+                🧪 ТЕСТ API
+            </button>
+        </div>
+
+        <div id="api-result" style="margin-top: 30px; padding: 25px; background: rgba(0, 0, 0, 0.8); border-radius: 15px; display: none; border: 1px solid rgba(0, 255, 255, 0.3);">
+            <h3 style="color: #00ffff; font-family: 'Orbitron', monospace; margin-bottom: 15px;">API RESPONSE:</h3>
+            <pre id="api-response" style="color: #ffffff; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.4; overflow-x: auto;"></pre>
+        </div>
+    </div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('api-result');
+            const responseDiv = document.getElementById('api-response');
+            
+            // Показываем индикатор загрузки
+            resultDiv.style.display = 'block';
+            resultDiv.style.background = 'rgba(255, 170, 0, 0.1)';
+            resultDiv.style.border = '2px solid #ffaa00';
+            responseDiv.textContent = '🔄 Подключение к API...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/skills/');
+                const data = await response.json();
+                
+                responseDiv.textContent = JSON.stringify(data, null, 2);
+                
+                if (response.ok) {
+                    resultDiv.style.background = 'rgba(0, 255, 0, 0.1)';
+                    resultDiv.style.border = '2px solid #00ff00';
+                    responseDiv.textContent = '✅ УСПЕШНО!\n\n' + JSON.stringify(data, null, 2);
+                } else {
+                    resultDiv.style.background = 'rgba(255, 0, 0, 0.1)';
+                    resultDiv.style.border = '2px solid #ff0000';
+                    responseDiv.textContent = '❌ ОШИБКА: ' + JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                resultDiv.style.background = 'rgba(255, 0, 0, 0.1)';
+                resultDiv.style.border = '2px solid #ff0000';
+                responseDiv.textContent = '❌ ОШИБКА ПОДКЛЮЧЕНИЯ:\n' + error.message + '\n\nУбедитесь, что Django сервер запущен на localhost:8000';
+            }
+        }
+        
+        // Добавляем эффекты при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления элементов
+            const elements = document.querySelectorAll('.feature, .api-endpoint, .status, .blockchain-info');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
